@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" ng-app="autoApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Auto Track</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap-theme.css">
+		<link rel="stylesheet" href="css/app.css">
+		<script src="components/jquery/dist/jquery.js"></script>
+		<script src="components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="components/angular/angular.js"></script>
+		<script src="js/controllers.js"></script>
+	</head>
+	<body  ng-controller="autoCtrl">
+
+	   <!-- Fixed navbar -->
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">Auto Track</a>
+	        </div>
+	        <div id="navbar" class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="#">Home</a></li>
+	            <li><a href="#about">About</a></li>
+	            <li><a href="#contact">Contact</a></li>
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	              <ul class="dropdown-menu">
+	                <li><a href="#">Fuel Mileage</a></li>
+	                <li><a href="#">Engine Oil</a></li>
+	                <li><a href="#">Tyre</a></li>
+	                <li role="separator" class="divider"></li>
+	                <li class="dropdown-header">Service</li>
+	                <li><a href="#">Brake Oil</a></li>
+	                <li><a href="#">Coolant</a></li>
+	              </ul>
+	            </li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </nav>	
+
+		<div class="container"  ng-controller="autoCtrl" class="container theme-showcase" role="main">
+		    <div class="page-header">
+		    	<h1>Fuel Mileage</h1>
+		    </div>
+		    
+      		<div class="row">
+        		<div class="table-responsive">		    
+		    		<table class="table table-striped">
+			            <thead>
+			              <tr>
+			                <th>KM Reading</th>
+			                <th>Fuel to Full tank</th>
+			                <th>Amount Paid</th>
+			                <th>Rate per KM</th>
+			                <th>#</th>
+			              </tr>
+			            </thead>
+			            <tbody>
+			              <tr ng-repeat="reading in readings">
+			                <td>{{reading.reading}}</td>
+			                <td>{{reading.fuel}}</td>
+			                <td>{{reading.amount}}</td>
+			                <td>{{reading.amount / reading.fuel}}</td>
+			                <td>{{reading.sequence}}</td>
+			              </tr>
+			              <tr>
+			              	<td><input type="text" ng-model="reading"></td>
+			              	<td><input type="text" ng-model="fuel"></td>
+			              	<td><input type="text" ng-model="amount"></td>
+			              	<td>{{  ((isNaN(amount / fuel)) ? '' : (amount/fuel)) }}</td>
+			              	<td>
+			              		<button ng-click="addReading()" type="button" class="btn btn-sm btn-default" value="Add">Add</button>
+			              	</td>
+			              </tr>
+			            </tbody>		    		
+		    		</table>
+		    	</div>
+		    </div>  
+
+			<div class="row">
+				<div class="col-sm-4">
+					 <div class="panel panel-default">
+			            <div class="panel-heading">
+			              <h3 class="panel-title">Statistics for this fill</h3>
+			            </div>
+			            <div class="panel-body">
+			            	<table class="table">
+				              <tr>
+				                <td>Distance</td>
+				                <td>{{ (readings[counter-1].reading - readings[counter-2].reading) }}</td>
+				              </tr>	
+				              <tr>
+				                <td>Fuel</td>
+				                <td>{{readings[counter-1].fuel }}</td>
+				              </tr>	
+				              <tr>
+				                <td>Average</td>
+				                <td>{{ (readings[counter-1].reading - readings[counter-2].reading)/ readings[counter-1].fuel }}</td>
+				              </tr>	
+				              <tr>
+				              	<td></td>
+				              	<td></td>
+				              </tr>
+				              				              				              		            	
+			            	</table>
+			            </div>					 	
+					 </div>
+				</div>
+			</div>		
+		</div>		      
+
+	</body>
+</html>

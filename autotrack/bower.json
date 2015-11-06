@@ -1,0 +1,27 @@
+{
+  "name": "autotrack",
+  "version": "1.0.0",
+  "description": "Car Maintainance",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "authors": [
+    "mgupta82"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.7",
+    "angular-mocks": "~1.4.7"
+  }
+}
